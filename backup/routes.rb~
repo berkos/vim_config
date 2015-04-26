@@ -1,0 +1,253 @@
+require 'sidekiq/web'
+
+Fantasyinsiders::Application.routes.draw do
+
+  namespace :api do
+    namespace :v1 do
+      get 'mlb_ranked_players', to: 'mlb_rankings#index'
+    end
+  end
+
+  if Rails.env.development? or Rails.env.staging?
+    get 'library/(:partial)', to: 'application#library'
+  end
+
+  get "nba_players/show"
+  resources :create_nba_game_logs
+
+  resources :player_alt_names
+
+  resources :players, only: [:show]
+  get 'nba/player/:player_id' => 'nba_players#show'
+  #get 'mlb/player/:player_id' => 'mlb_players#show'
+  match 'mlb/player/:player_id' => 'mlb_lineups#index', via: [:get, :post], :as => 'mlb_lineups_player'
+
+  get "player_salary/import"
+  resources :videos
+
+  get "/nfl/premium"  => 'application#premium'
+  get "nfl"           => 'nfl#index'
+  get "cfb"           => 'cfb#index'
+  get "mlb"           => 'mlb#index'
+  get "nba"           => 'nba#index'
+  get "soc"           => 'soc#index'
+  get "nhl"           => 'nhl#index'
+  get "pod"           => 'pod#index'
+  get "cbb"           => 'cbb#index'
+  get "learn"         => 'learn#index'
+
+  get "thebat" => 'home#thebat'
+
+  get "sites/:site_name" => "sites#index", :as => 'site'
+
+  get "nba/value_charts/:site_id/:gamedate" => "value_charts#nba_show"
+
+  resources :sports
+
+  resources :sweat_scoreboard_entries
+
+  resources :feature_selectors
+
+  mount RedactorRails::Engine => '/redactor_rails'
+  #resources :nfl_game_logs
+
+  devise_for :users, :controllers => { registrations: 'registrations' }
+
+
+  get 'admin/import' => 'player_salary#index'
+  post 'admin/import' => 'player_salary#import', as: 'salary_import'
+
+  get 'admin/nba/alerts' => 'nba_alerts_admin#index', as: 'nba_alerts'
+  get 'admin/nba/alert/:id' => 'nba_alerts_admin#show', as: 'nba_alert'
+  post 'admin/nba/alerts' => 'nba_alerts_admin#create'
+  get 'admin/nba/alerts/:id/edit' => 'nba_alerts_admin#edit', as: 'edit_nba_alert'
+  put 'admin/nba/alert/:id' => 'nba_alerts_admin#update'
+  patch 'admin/nba/alert/:id' => 'nba_alerts_admin#update'
+
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
+  authenticate :user, lambda { |u| u.role == "admin" } do
+    mount Sidekiq::Web, at: '/sidekiq'
+  end
+
+  namespace :manage do
+    get "/" => 'management#index'
+
+    scope :nfl do
+      resources :players
+    end
+  end
+
+  scope '/tools' do
+    match '/nba/value_charts' => 'value_charts#nba', via: [:get, :post], :as => 'nba_value_charts'
+    match '/nba/alerts' => 'ember#index', via: [:get]
+    match '/nba/chat' => 'nba#chat', via: [:get]
+    match '/nba/knappy' => 'nba#knappy', via: [:get]
+    match '/nba/projections_import' => 'nba#projections_import', via: [:post], :as => 'nba_projections_import'
+
+
+    match '/mlb/lineups' => 'mlb_lineups#index', via: [:get, :post], :as => 'mlb_lineups'
+    match '/mlb/lineups/manage' => 'mlb_lineups#index', via: [:get], :as => 'mlb_lineups_manage'
+    match '/mlb/lineups/site/:site_id' => 'mlb_lineups#index', via: [:get], :as => 'mlb_lineups_site'
+    match '/mlb/salaries' => 'ember#index', via: [:get]
+    match '/mlb/rankings' => 'ember#rankings', via: [:get]
+    match '/mlb/batman/hitters' => 'ember#batman', via: [:get]
+    match '/mlb/batman/pitchers' => 'ember#batman', via: [:get]
+    match '/mlb/knappy' => 'mlb_lineups#index', via: [:get]
+    # FIX
+    match '/nfl/knappy' => 'mlb_lineups#nfl', via: [:get]
+    match '/nfl/salaries' => 'ember#index', via: [:get]
+    #match '/mlb/batman/nappy' => 'ember#index', via: [:get]
+
+    # NFL
+    match '/nfl/projections' => 'ember#nfl_projections', via: [:get]
+    match '/nfl/odds' => 'nfl_odds#index', via: [:get], :as => 'nfl_odds'
+    get '/nfl/lineups' => 'nfl_lineups#index', via: [:get], :as => 'nfl_lineups'
+    get '/nfl/lineups/site/:site_id' => 'nfl_lineups#index', via: [:get], :as => 'nfl_lineups_site'
+
+    # CFB
+    match '/cfb/odds' => 'cfb_odds#index', via: [:get], :as => 'cfb_odds'
+
+  end
+
+  resources :articles do
+    get 'page/:page', :action => :index, :on => :collection
+    get 'archive/:tag_name', :action => :index_by_tag_name, :on => :collection
+  end
+
+  resources :player_news do
+    get 'page/:page', :action => :index, :on => :collection
+  end
+
+  #----------payments routes------------------------------------
+
+  resources :plans,              only: [:index, :new]
+  get 'plans/add_on'             => 'plans#add_on'
+  post 'plans/add_on_payment'    => 'plans#add_on_payment'
+  get 'plans/add_on_selection'   => 'plans#add_on_selection'
+  post 'plans/create'            => 'plans#create'
+  post 'plans/update'            => 'plans#update_card'
+  get 'plans/cancel'             => 'plans#cancel'
+  get 'plans/benefits'           => 'plans#benefits'
+
+  get 'paypal/checkout',            to: 'paypal#paypal_checkout'
+  get 'paypal/new_subscription',    to: 'paypal#new_paypal_subscription'
+  get 'paypal/thank_you',           to: 'paypal#paypal_thank_you'
+  get 'paypal/cancel',              to: 'paypal#cancel_subscription'
+  get 'paypal/add_on_checkout',     to: 'paypal#paypal_add_on_checkout'
+  get 'paypal/new_add_on_payment',  to: 'paypal#new_add_on_payment'
+
+  #----------payments routes--------------------------------
+
+  #----------roto_pass_integration---------------------------
+
+  post 'rotopass/register',        to: 'roto_pass#register'
+  get 'rotopass/sso',              to: 'roto_pass#single_sign_on'
+
+  resources :matchups, only: :update
+
+  get "/tv" => 'tv#index'
+
+  root :to => 'home#index'
+
+  get '/terms_of_service',  to: 'home#terms_of_service'
+
+
+  post 'nba_team_opponent_stats' => 'nba_team_opponent_stats#import', as: 'nba_team_opponent_stats_import'
+
+  post '/nba/minutes' => "efficiency#save_minutes"
+
+  get '/nba/efficiency/:site_id' => "efficiency#xhr_show"
+
+  resources :nba_team_opponent_stats
+
+  get 'mlb_optimal' => 'mlb_optimal#index'
+
+  get 'mlb_rankings/import' => 'mlb_rankings#index'
+  post 'mlb_rankings/import' => 'mlb_rankings#import', as: 'mlb_ev_import'
+
+  namespace :api do
+    namespace :v1 do
+
+      # NBA 
+      resources :nba_alerts, :only => [:create, :index] do
+        member do
+          post :create_subscription
+          get :subscriptions
+        end
+      end
+
+      namespace :mlb do
+        namespace :thebat do
+          get ':year/:month/:day' => 'bat#show', constraints: {
+            year: /\d{4}/,
+            month: /\d{1,2}/,
+            day: /\d{1,2}/
+          }
+        end
+      end
+
+      resources :nba_players
+      resources :nba_alert_subscriptions
+      resources :nba_notifications
+
+      resources :sites, :only => [:index, :show]
+      resources  :games , :only => [:index]
+      resources  :players, :only => [:show]
+      resources  :salaries, :only => [:index]
+      resources  :mlb_season_batting_stats,  :only => [:show]
+      resources  :mlb_season_pitching_stats, :only => [:show]
+      resources  :merged_salaries do
+        get 'pagination_info', on: :collection
+        get 'export_to_csv', on: :collection
+      end
+      resources  :manage_games, :only => [:index, :create]
+
+      resources :pitcher_projections, :only => [:index] do
+        get 'export_to_csv', on: :collection
+      end
+      resources :hitter_projections,  :only => [:index] do
+        get 'export_to_csv', on: :collection
+      end
+      resources :nappy_hitter_projections,  :only => [:index]
+      resources :optimals, :only => [:index] do
+        collection do
+          post :optimize
+        end
+      end
+      resources :teams, :only => [:index, :show] do
+        member do
+          get :get_players
+        end
+      end
+
+      resources :mlb_cheat_sheet_players, :only => [:index]
+      resources :nfl_salaries, :only => [:index]
+      resources :nfl_games, :only => [:index]
+      resources :nfl_weekly_projections, :only => [:index]
+      resources :nfl_depth_charts, :only => [:index]
+      resources :nfl_odds, :only => [:index]
+      resources :nfl_optimals, :only => [:index] do
+        collection do
+          post :optimize
+        end
+      end
+      resources :nfl_teams, :only => [:index, :show] do
+        member do
+          get :get_players
+        end
+      end
+      resources :nfl_merged_salaries do
+        get 'pagination_info', on: :collection
+        get 'export_to_csv', on: :collection
+      end
+      resources :nfl_cheat_sheet_players, :only => [:index]
+      resources :qb_projections, :only => [:index] do
+        get 'export_to_csv', on: :collection
+      end
+    end
+  end
+
+  get 'p/*a', to: 'pages#show'
+  get '*a',   to: 'home#index'
+end

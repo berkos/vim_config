@@ -1,0 +1,75 @@
+<div class="users-page">
+
+  <h3>My account</h3>
+
+  <% if flash[:notice] %>
+    <div class="notice" style="color:red">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div><%= f.label :email %>
+    <%= f.email_field :email %></div>
+
+    <div><%= f.label :username %>
+    <%= f.text_field :username %></div>
+
+    <div><%= f.label :name %>
+    <%= f.text_field :name %></div>
+
+    <div>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+      <i>(leave blank if you don't want to change it)</i>
+    </div>
+
+    <div><%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %></div>
+
+    <div>
+      <%= f.label :current_password %>
+      <%= f.password_field :current_password %>
+      <i>(we need your current password to confirm your changes)</i>
+    </div>
+
+    <div><%= f.label :phone %>
+    <%= f.text_field :phone %></div>
+
+    <div><%= f.submit "Update" %></div>
+  <% end %>
+
+  <% if params[:action] == "edit" %>
+
+    
+
+
+    <h3>My subscriptions</h3>
+    <%= render 'shared/user_subscriptions' %>
+    <% if current_user.user_on_monthly_subscription? %>
+      <h5> 
+        Want to switch from Monthly to Annual?
+        <%= link_to 'Please click here', plans_switch_to_annual_path %>
+      </h5>
+    <% end %>
+
+    <h3>Update my current credit card</h3>
+
+      <%= render 'shared/user_update_card'%>
+  <% end %>
+  <br>
+  <% unless @user.subscriptions.empty? %>
+    <p>Change your mind about the extra features and you want to subscribe to an Add-On feature?</p>
+    <p>You can click <%= link_to "here", plans_add_on_selection_path %> if you want to subscribe just to the Available Add-on.</p>
+  <% end %>
+
+  <h3>Cancel my account</h3>
+
+  <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
+  <p>
+    <%= link_to "Back", :back , :class => "btn"%>
+  </p>
+
+</div>

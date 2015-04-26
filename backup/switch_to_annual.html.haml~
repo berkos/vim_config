@@ -1,0 +1,72 @@
+= javascript_include_tag "plan"
+
+- if flash[:notice]
+  .notice
+    = flash[:notice]
+
+.plans-new-page
+  %h3 Welcome to the subscription registration page
+
+  %h4
+    You are about to switch your monthly plan to annual for #{number_to_currency @plan.price}
+  .select_payment
+    = radio_button_tag :pay_with, :card, true
+    = label_tag :pay_with_card do
+      = image_tag "cards.png", size: "160x320"
+    .br
+    = radio_button_tag :pay_with, :paypal
+    = label_tag :pay_with_paypal do
+      = image_tag "paypal.png"
+
+
+
+  .paypal_checkout{style: "display:none"}
+    = link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), paypal_checkout_path(plan_id: @plan.id)
+
+  .stripePayment
+    - if current_user.customer_stripe_id != nil
+
+      %form{action: "/plans/create", method: "POST"}
+        %h3
+          Your Payment Information
+        %p
+          Using card ending with:
+          %b #{current_user.last_4_digits}
+        %p{style: "font-size:0.7rem;margin:10px 0 10px 0;color:#666;"}
+        %ul
+
+        / %br
+        / %p Do you have a Coupon code? Plase add this below!
+        / = label_tag "Coupon Code"
+        / = text_field_tag :coupon
+        / %br
+        = hidden_field_tag :plan_id, "#{@plan.id}"
+        %button#stripeButton proceed to Payment
+    - else
+      %form#payment-form{action: "/plans/create", method: "POST"}
+        %h3
+          Your Payment Information
+        %span.payment-errors{ :style => "color: red;" }
+        %p{style: "font-size:0.7rem;margin:10px 0 10px 0;color:#666; text-align: center;"}
+        %ul
+          %li
+            %input{"data-stripe" => "number", placeholder: "Card Number", type: "text"}/
+          %li
+            %input{"data-stripe" => "cvc", placeholder: "CVC", size: "4", type: "text"}/
+          %li.floatFix
+            %ul.expireCard
+              %li.floatLeft
+                %input{"data-stripe" => "exp-month", placeholder: "(MM)", size: "2", type: "text"}/
+              %li.floatLeft
+                %input{"data-stripe" => "exp-year", placeholder: "(YYYY)", size: "4", type: "text"}/
+
+          / %br
+          / %p Do you have a Coupon code? Plase add this below!
+          / %input{"id" => "coupon", "name" => "coupon", placeholder: "Coupon Code", type: "text"}/
+          / %br
+          = hidden_field_tag :plan_id, "#{@plan.id}"
+          %button#stripeButton proceed to payment
+
+
+=render 'shared/stripe_js'
+.plans-thanks-page

@@ -1,0 +1,20 @@
+class Api::V1::MlbRankingsController < ApplicationController
+  before_action :set_api_v1_mlb_ranking, only: [ :edit, :update, :destroy]
+
+  # GET /api/v1/mlb_rankings
+  # GET /api/v1/mlb_rankings.json
+    def index
+    # begin
+      render :json =>  MlbRankingJsonGenerator.new(params).create_json, status: 200
+
+    # rescue => e
+    #   render :json => {:error => e.to_json }, status: 500
+    # end
+    end
+  end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+  def api_v1_mlb_ranking_params
+    params.require(:api_v1_mlb_ranking).permit(:nickname_id, :gameDate, :rank_for, :pitcher_ranking_1_id, :pitcher_ranking_2_id, :pitcher_ranking_3_id, :pitcher_ranking_4_id, :pitcher_ranking_5_id, :catcher_ranking_1_id, :catcher_ranking_2_id, :catcher_ranking_3_id, :catcher_ranking_4_id, :catcher_ranking_5_id, :first_base_ranking_1_id, :first_base_ranking_2_id, :first_base_ranking_3_id, :first_base_ranking_4_id, :first_base_ranking_5_id, :second_base_ranking_1_id, :second_base_ranking_2_id, :second_base_ranking_3_id, :second_base_ranking_4_id, :second_base_ranking_5_id, :third_base_ranking_1_id, :third_base_ranking_2_id, :third_base_ranking_3_id, :third_base_ranking_4_id, :third_base_ranking_5_id, :short_stop_ranking_1_id, :short_stop_ranking_2_id, :short_stop_ranking_3_id, :short_stop_ranking_4_id, :short_stop_ranking_5_id, :outfield_ranking_1_id, :outfield_ranking_2_id, :outfield_ranking_3_id, :outfield_ranking_4_id, :outfield_ranking_5_id, :outfield_ranking_6_id, :outfield_ranking_7_id, :outfield_ranking_8_id, :outfield_ranking_9_id, :outfield_ranking_10_id)
+  end
+end

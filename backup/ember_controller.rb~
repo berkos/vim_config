@@ -1,0 +1,22 @@
+class EmberController < ApplicationController
+	layout 'ember'
+
+  before_filter :authenticate_user!, :only => [:batman, :nfl_projections]
+
+	def index
+  end
+
+  def nba
+    render 'ember/index', layout: 'nba'
+  end
+
+  # BATMAN HITTERS
+  def batman
+    authorize! :batman, nil
+  end
+
+  def nfl_projections
+    authorize! :nfl_projections, nil
+  end
+
+end

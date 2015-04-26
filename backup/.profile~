@@ -1,0 +1,8 @@
+source ~/.bashrc
+
+alias "reload=source ~/.bashrc"
+alias "c=clear"
+alias "be=bundle exec"
+alias "brc=vim ~/.bashrc"
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

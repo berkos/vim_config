@@ -1,0 +1,58 @@
+# == Schema Information
+#
+# Table name: player_salaries
+#
+#  id            :integer          not null, primary key
+#  position      :string(10)       not null
+#  first_name    :string(100)      not null
+#  last_name     :string(100)      not null
+#  player_id     :integer          not null
+#  team          :string(255)
+#  opponent      :string(255)
+#  ppg           :integer
+#  salary        :string(255)      not null
+#  injury_status :string(255)
+#  site_id       :integer          not null
+#  created_at    :datetime
+#  updated_at    :datetime
+#  gamedate      :date             not null
+#  sport_id      :integer          default(0)
+#
+
+class PlayerSalary < ActiveRecord::Base
+  belongs_to :player
+  belongs_to :site
+  belongs_to :sport
+
+  validates :player_id, presence: true
+  validates :site_id, presence: true
+  validates :sport_id, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :salary, presence: true
+  validates :gamedate, presence: true
+
+  validates_uniqueness_of :player_id, :scope => [:site_id, :gamedate]
+
+  rails_admin do 
+    list do
+      field :player_id
+      field :first_name
+      field :last_name
+      field :salary
+      field :gamedate
+    end
+  end
+
+  scope :for_site_id_and_gamedate, ->(site_id, gd) { where(:gamedate => gd.to_date, :site_id => site_id)}
+  scope :for_sport_and_gamedate, ->(sport_id, gd) { where(gamedate: gd, sport_id: sport_id)}
+
+  def salary_to_number
+    salary.scan(/\d/).join.to_i
+  end
+
+  def display_name
+    "#{first_name} #{last_name}"
+  end
+
+end

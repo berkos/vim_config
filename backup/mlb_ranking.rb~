@@ -1,0 +1,82 @@
+class MlbRanking < ActiveRecord::Base
+   belongs_to :nickname, class_name: 'User'
+
+  5.times.each do |i|
+    belongs_to  "pitcher_ranking_#{i+1}".to_sym, -> { includes(:sport).where(sports: {name: "mlb"})  },  class_name: 'Player'
+  end
+
+  5.times.each do |i|
+    belongs_to  "catcher_ranking_#{i+1}".to_sym, class_name: 'Player'
+  end
+
+  5.times.each do |i|
+    belongs_to  "first_base_ranking_#{i+1}".to_sym, class_name: 'Player'
+  end
+
+  5.times.each do |i|
+    belongs_to  "second_base_ranking_#{i+1}".to_sym, class_name: 'Player'
+  end
+
+  5.times.each do |i|
+    belongs_to  "third_base_ranking_#{i+1}".to_sym, class_name: 'Player'
+  end
+
+  5.times.each do |i|
+    belongs_to  "short_stop_ranking_#{i+1}".to_sym, class_name: 'Player'
+  end
+
+  10.times.each do |i|
+    belongs_to  "outfield_ranking_#{i+1}".to_sym, class_name: 'Player'
+  end
+
+  validates :pitcher_ranking_1, :pitcher_ranking_2, :pitcher_ranking_3, :pitcher_ranking_4, :pitcher_ranking_5,
+            :catcher_ranking_1, :catcher_ranking_2, :catcher_ranking_3, :catcher_ranking_4, :catcher_ranking_5,
+            :first_base_ranking_1, :first_base_ranking_2, :first_base_ranking_3, :first_base_ranking_4, :first_base_ranking_5,
+            :second_base_ranking_1, :second_base_ranking_2, :second_base_ranking_3, :second_base_ranking_4, :second_base_ranking_5,
+            :third_base_ranking_1, :third_base_ranking_2, :third_base_ranking_3, :third_base_ranking_4, :third_base_ranking_5,
+            :short_stop_ranking_1, :short_stop_ranking_2, :short_stop_ranking_3, :short_stop_ranking_4, :short_stop_ranking_5,
+            :outfield_ranking_1, :outfield_ranking_2, :outfield_ranking_3, :outfield_ranking_4, :outfield_ranking_5,
+            :outfield_ranking_6, :outfield_ranking_7, :outfield_ranking_8, :outfield_ranking_9, :outfield_ranking_10,
+            :nickname, :gameDate, :rank_for, presence: true
+
+
+
+
+
+  def rank_for_enum
+    ['draftkings','fanduel']
+  end
+
+  def players(position = nil)
+
+     case position
+     when 'SP'
+      [ pitcher_ranking_1_id, pitcher_ranking_2_id, pitcher_ranking_3_id, pitcher_ranking_4_id, pitcher_ranking_5_id ]
+     when 'C'
+      [ catcher_ranking_1_id, catcher_ranking_2_id, catcher_ranking_3_id, catcher_ranking_4_id, catcher_ranking_5_id ]
+     when '1B'
+      [  first_base_ranking_1_id, first_base_ranking_2_id, first_base_ranking_3_id, first_base_ranking_4_id, first_base_ranking_5_id ]
+     when '2B'
+      [  second_base_ranking_1_id, second_base_ranking_2_id, second_base_ranking_3_id, second_base_ranking_4_id, second_base_ranking_5_id ]
+     when '3B'
+      [ third_base_ranking_1_id, third_base_ranking_2_id, third_base_ranking_3_id, third_base_ranking_4_id, third_base_ranking_5_id ]
+     when 'SS'
+      [ short_stop_ranking_1_id, short_stop_ranking_2_id, short_stop_ranking_3_id, short_stop_ranking_4_id, short_stop_ranking_5_id ]
+     when 'OF'
+      [ outfield_ranking_1_id, outfield_ranking_2_id, outfield_ranking_3_id, outfield_ranking_4_id, outfield_ranking_5_id,
+        outfield_ranking_6_id, outfield_ranking_7_id, outfield_ranking_8_id, outfield_ranking_9_id, outfield_ranking_10_id ]
+     else
+
+      [ pitcher_ranking_1_id, pitcher_ranking_2_id, pitcher_ranking_3_id, pitcher_ranking_4_id, pitcher_ranking_5_id,
+       catcher_ranking_1_id, catcher_ranking_2_id, catcher_ranking_3_id, catcher_ranking_4_id, catcher_ranking_5_id,
+       first_base_ranking_1_id, first_base_ranking_2_id, first_base_ranking_3_id, first_base_ranking_4_id, first_base_ranking_5_id,
+       second_base_ranking_1_id, second_base_ranking_2_id, second_base_ranking_3_id, second_base_ranking_4_id, second_base_ranking_5_id,
+       third_base_ranking_1, third_base_ranking_2_id, third_base_ranking_3_id, third_base_ranking_4_id, third_base_ranking_5_id,
+       short_stop_ranking_1_id, short_stop_ranking_2_id, short_stop_ranking_3_id, short_stop_ranking_4_id, short_stop_ranking_5_id,
+       outfield_ranking_1_id, outfield_ranking_2_id, outfield_ranking_3_id, outfield_ranking_4_id, outfield_ranking_5_id,
+       outfield_ranking_6_id, outfield_ranking_7_id, outfield_ranking_8_id, outfield_ranking_9_id, outfield_ranking_10_id
+
+      ]
+    end
+  end
+end
