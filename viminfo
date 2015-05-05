@@ -14,8 +14,9 @@
 $
 
 # Command Line History (newest to oldest):
-:q
+:wq
 :qa
+:q
 :grep -R '.ad' .
 :vimgrep "string" db/schema.rb
 :vimgrep "string" *
@@ -24,7 +25,6 @@ $
 :grep string
 :w
 :MRU
-:wq
 :MEU
 :W
 :q!
@@ -84,18 +84,21 @@ $
 	where(player_id: player.id).first
 
 # File marks:
-'0  40  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/app/views/items/index.html.slim
-'1  1  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/app/views/items/index.html.slim
-'2  1  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/zsh
-'3  10  5  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/mlb_ranking_json_generator.rb
-'4  41  50  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/mlb_ranking_json_generator.rb
-'5  20  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/models/player_salary.rb
-'6  41  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/controllers/roto_pass_controller.rb
-'7  8  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/mlb_ranking_json_generator.rb
-'8  32  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/mlb_ranking_json_generator.rb
-'9  11  40  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/controllers/mlb_lineups_controller.rb
+'0  45  30  ~/.vim/.vimrc
+'1  1  0  ~/.vim/.git/MERGE_MSG
+'2  40  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/app/views/items/index.html.slim
+'3  1  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/app/views/items/index.html.slim
+'4  1  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/zsh
+'5  10  5  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/mlb_ranking_json_generator.rb
+'6  41  50  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/mlb_ranking_json_generator.rb
+'7  20  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/models/player_salary.rb
+'8  41  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/controllers/roto_pass_controller.rb
+'9  8  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/mlb_ranking_json_generator.rb
 
 # Jumplist (newest first):
+-'  45  30  ~/.vim/.vimrc
+-'  1  0  ~/.vim/.vimrc
+-'  1  0  ~/.vim/.git/MERGE_MSG
 -'  40  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/app/views/items/index.html.slim
 -'  1  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/app/views/items/index.html.slim
 -'  1  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/zsh
@@ -192,10 +195,17 @@ $
 -'  31  52  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/controllers/api/v1/merged_salaries_controller.rb
 -'  30  60  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/controllers/api/v1/merged_salaries_controller.rb
 -'  29  59  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/controllers/api/v1/merged_salaries_controller.rb
--'  28  25  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/controllers/api/v1/merged_salaries_controller.rb
--'  1  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/zsh
 
 # History of marks within files (newest to oldest):
+
+> ~/.vim/.vimrc
+	"	45	30
+	^	45	31
+	.	45	29
+	+	45	29
+
+> ~/.vim/.git/MERGE_MSG
+	"	1	0
 
 > ~/Developer/ruby/antonis/elance/shapeandfurnish/app/views/items/index.html.slim
 	"	40	0
