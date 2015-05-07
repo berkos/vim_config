@@ -10,11 +10,12 @@ call vundle#rc()
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "honza/vim-snippets"
-
+Bundle "sickill/vim-sunburst"
 " Good looking bottom :) 
 
-
+Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
+Bundle 'Xuyuanp/nerdtree-git-plugin'
 Bundle 'slim-template/vim-slim'
 
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
@@ -62,6 +63,8 @@ Bundle 'nono/vim-handlebars'
 " ----------- Mine Stuff  ------
 set splitright
 map  ,t  <C-p>
+let NERDTreeMapPreview='gt'
+map <C-n> :NERDTreeToggle<CR>
 
 set guifont=Inconsolata\ for\ Powerline:h15
 let g:Powerline_symbols = 'fancy'
