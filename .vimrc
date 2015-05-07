@@ -17,6 +17,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'Xuyuanp/nerdtree-git-plugin'
 Bundle 'slim-template/vim-slim'
+Bundle 'airblade/vim-gitgutter'
 
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
