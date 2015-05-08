@@ -65,6 +65,7 @@ Bundle 'nono/vim-handlebars'
 set splitright
 map  ,t  <C-p>
 let NERDTreeMapPreview='gt'
+let NERDTreeShowHidden=1
 map <C-n> :NERDTreeToggle<CR>
 
 set guifont=Inconsolata\ for\ Powerline:h15
