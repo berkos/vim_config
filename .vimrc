@@ -61,8 +61,18 @@ Bundle 'danro/rename.vim'
 
 Bundle 'nono/vim-handlebars'
 
-" ----------- Mine Stuff  ------
+" ----------- My Stuff  ------
+"
+nnoremap œ :tabprevious<CR>
+nnoremap ∑ :tabnext<CR>
+nnoremap † :tabnew<CR>
+inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+inoremap <C-tab>   <Esc>:tabnext<CR>i
+inoremap <C-t>     <Esc>:tabnew<CR>
+
 set splitright
+set relativenumber
+
 map  ,t  <C-p>
 let NERDTreeMapPreview='gt'
 let NERDTreeShowHidden=1
