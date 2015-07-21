@@ -18,6 +18,8 @@ Bundle 'scrooloose/syntastic'
 Bundle 'Xuyuanp/nerdtree-git-plugin'
 Bundle 'slim-template/vim-slim'
 Bundle 'airblade/vim-gitgutter'
+Plugin 'https://github.com/berkos/vim-haml.git'
+Plugin 'Yggdroot/indentLine'
 
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
@@ -76,6 +78,8 @@ set relativenumber
 map  ,t  <C-p>
 let NERDTreeMapPreview='gt'
 let NERDTreeShowHidden=1
+let g:indentLine_color_term = 239
+
 map <C-n> :NERDTreeToggle<CR>
 
 set guifont=Inconsolata\ for\ Powerline:h15
