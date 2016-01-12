@@ -8,22 +8,23 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~MSle0~/player_sa
+~MSle0~/event
 
 # Last Substitute String:
 $
 
 # Command Line History (newest to oldest):
 :wq
-:qa
+:w
 :q
+:qa
+:PluginInstall
 :grep -R '.ad' .
 :vimgrep "string" db/schema.rb
 :vimgrep "string" *
 :vimgrep "dining" *
 :vimgrep "dining"
 :grep string
-:w
 :MRU
 :MEU
 :W
@@ -33,9 +34,10 @@ $
 :e
 :vsplit 
 :open test.rb
-:test.rb
 
 # Search String History (newest to oldest):
+?/event
+?/Database
 ?/mlb/rankings
 ?/rankings
 ?/rankin
@@ -59,43 +61,52 @@ $
 # Input Line History (newest to oldest):
 
 # Registers:
-""0	CHAR	0
+"0	CHAR	0
 	where(player_id: player.id).first
-"1	LINE	0
-	      Gio Gonzalez
+""1	LINE	0
+	Then install gem dependencies with:
 "2	LINE	0
-	      player_salary = player.player_salaries.where(gamedate: @date).first
+	      Gio Gonzalez
 "3	LINE	0
-	        frefer
+	      player_salary = player.player_salaries.where(gamedate: @date).first
 "4	LINE	0
-	     efefer
+	        frefer
 "5	LINE	0
+	     efefer
+"6	LINE	0
 	        
 	      end
-"6	LINE	0
-	neupDeluxeend
 "7	LINE	0
-	neupDeluxeddend
+	neupDeluxeend
 "8	LINE	0
-	    MlbLineupDeluxe
+	neupDeluxeddend
 "9	LINE	0
-	    fdsfsdf
+	    MlbLineupDeluxe
 "-	CHAR	0
 	where(player_id: player.id).first
 
 # File marks:
-'0  45  30  ~/.vim/.vimrc
-'1  1  0  ~/.vim/.git/MERGE_MSG
-'2  40  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/app/views/items/index.html.slim
-'3  1  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/app/views/items/index.html.slim
-'4  1  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/zsh
-'5  10  5  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/mlb_ranking_json_generator.rb
-'6  41  50  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/mlb_ranking_json_generator.rb
-'7  20  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/models/player_salary.rb
-'8  41  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/controllers/roto_pass_controller.rb
-'9  8  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/mlb_ranking_json_generator.rb
+'0  55  30  ~/Developer/FundingCircle/funding_circle_app/README.md
+'1  4  0  ~/Developer/FundingCircle/funding_circle_app/Gemfile
+'2  95  103  ~/Developer/FundingCircle/funding_circle_app/README.md
+'3  4  0  ~/vim_config/bundle/NERD_tree_1
+'4  45  30  ~/.vim/.vimrc
+'5  1  0  ~/.vim/.git/MERGE_MSG
+'6  40  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/app/views/items/index.html.slim
+'7  1  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/app/views/items/index.html.slim
+'8  1  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/zsh
+'9  10  5  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/mlb_ranking_json_generator.rb
 
 # Jumplist (newest first):
+-'  55  30  ~/Developer/FundingCircle/funding_circle_app/README.md
+-'  1  0  ~/Developer/FundingCircle/funding_circle_app/README.md
+-'  4  0  ~/Developer/FundingCircle/funding_circle_app/Gemfile
+-'  1  0  ~/Developer/FundingCircle/funding_circle_app/Gemfile
+-'  95  103  ~/Developer/FundingCircle/funding_circle_app/README.md
+-'  77  0  ~/Developer/FundingCircle/funding_circle_app/README.md
+-'  4  0  ~/vim_config/bundle/NERD_tree_1
+-'  40  2  ~/vim_config/bundle/NERD_tree_1
+-'  1  0  ~/vim_config/bundle/NERD_tree_1
 -'  45  30  ~/.vim/.vimrc
 -'  1  0  ~/.vim/.vimrc
 -'  1  0  ~/.vim/.git/MERGE_MSG
@@ -186,17 +197,32 @@ $
 -'  1  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/helpers/api/base_helper.rb
 -'  8  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/config/application.rb
 -'  1  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/config/application.rb
--'  14  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/nfl_lineup_optimizer.rb
--'  1  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/nfl_lineup_optimizer.rb
--'  6  3  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/lineup_optimizer.rb
--'  1  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/lineup_optimizer.rb
--'  1  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/upgrade
--'  26  6  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/controllers/api/v1/merged_salaries_controller.rb
--'  31  52  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/controllers/api/v1/merged_salaries_controller.rb
--'  30  60  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/controllers/api/v1/merged_salaries_controller.rb
--'  29  59  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/controllers/api/v1/merged_salaries_controller.rb
 
 # History of marks within files (newest to oldest):
+
+> ~/Developer/FundingCircle/funding_circle_app/README.md
+	"	55	30
+	^	52	0
+	.	53	0
+	+	95	101
+	+	51	129
+	+	52	81
+	+	51	0
+	+	53	0
+
+> ~/Developer/FundingCircle/transfers/README.md
+	"	9	30
+	^	9	31
+	.	9	31
+	+	9	31
+
+> ~/Developer/FundingCircle/funding_circle_app/Gemfile
+	"	4	0
+
+> ~/vim_config/bundle/NERD_tree_1
+	"	4	0
+	.	1	0
+	+	1	0
 
 > ~/.vim/.vimrc
 	"	45	30

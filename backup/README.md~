@@ -1,0 +1,443 @@
+## Local Development Environment
+
+### Assumptions
+
+You are running a machine with OS X.
+
+### Dependencies
+
+To run this application locally you will need the following applications up and running:
+
+  - [FundingCircle/transfers](../../../transfers)
+  - [FundingCircle/fca-frontend](../../../fca-frontend)
+  - [FundingCircle/bilcas](../../../bilcas)
+  - [FundingCircle/codas](../../../codas)
+  - [FundingCircle/alpaca](../../../alpaca)
+  - [FundingCircle/loan_engine](../../../loan_engine)
+  - [FundingCircle/dispatcher](../../../dispatcher)
+  - [FundingCircle/static-content](../../../static-content)
+
+### Prerequisites
+
+  - Xcode command line tools (install via `xcode-select --install` or within Xcode)
+  - [Homebrew](http://brew.sh)
+  - Git (installation via `brew install git` is recommended)
+  - [Java JDK v1.7+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+  - A Ruby version manager (Use [RVM](http://rvm.io), [rbenv](https://github.com/sstephenson/rbenv) or [chruby](https://github.com/postmodern/chruby))
+  - Brew dependencies (checkout the Funding Circle [Brewfiles repo](https://github.com/FundingCircle/brewfiles), `cd` into it and run `bin/install`)
+
+#### Environment variables
+
+Set the application root dir as an environment variable `$FCA_ROOT` if you want to copy and paste commands later in the guide
+
+        $ export FCA_ROOT=/path/to/funding_circle_app
+
+#### Ruby
+
+Install the Ruby version referenced in `.ruby-version`
+
+For [RVM](http://rvm.io):
+
+    $ rvm install $(< .ruby-version)
+
+For [RBENV](https://github.com/sstephenson/rbenv)
+
+    $ rbenv install
+
+If you just installed a new version of ruby, make sure you have a bundler installed:
+
+    $ gem install bundler
+
+(In El Capitan OS you might need to define where the openssl.h header is for the eventmachine gem installation to pass, by doing)
+    $ bundle config build.eventmachine --with-cppflags=-I$(brew --prefix openssl)/include
+
+Then install gem dependencies with:
+    $ bundle install --binstubs
+
+#### System Configuration
+
+Update nginx configuration, run:
+
+    $ script/nginx_mac_install
+
+and follow the onscreen instructions.
+
+#### Perl
+
+1. Create application Perl modules, this example assumes you use a local Bilcas instance:
+
+        $ BILCAS_ENDPOINT=http://localhost:3000 bundle exec rake template\['vendor/lib/pi/CashfacPerl/Bilcas.pm vendor/lib/pi/CashfacPerl/Cashfac.pm'\]
+
+2. Setup Perl modules in the application
+
+        $ ln -s $FCA_ROOT/vendor/lib/pi /usr/local/pi
+
+3. Install Perl dependencies
+
+        $ sudo cpan install JSON Redis Resque
+
+    Note: this might fail for the first time. Retry if so.
+
+#### PHP
+
+Set `date.timezone = 'Europe/London'` in `/usr/local/etc/php/5.4/php.ini`:
+
+```sh
+    sed -i -e "s/;date.timezone.*/date.timezone = 'Europe\/London'/g" /usr/local/etc/php/5.4/php.ini
+```
+
+#### Database setup
+
+Optional: If this is your first Postgres database, run:
+
+	$ initdb -E utf8
+
+You might need to provide the path to the Postgres data directory with the -D switch (make sure this directory is onwned by the correct user if it does not), for example:
+
+	$ initdb -E utf8 -D /usr/local/var/postgres
+
+1. Create a database user 'postgres' as referenced in the app (answer ‘yes’ to superuser prompt)
+
+        $ createuser -s postgres
+
+2. Copy the php database config files and customise if required
+
+        $ cp config/databases.yml.dist config/databases.yml
+
+3. Comment out the ‘schema_search_path: ’ line in development: section of database.yml
+
+4. Create and migrate databases
+
+        $ for env in cucumber development test; do RAILS_ENV=$env bundle exec rake db:migrate:reset; done
+
+5. Create physical log files for database stored procedures
+
+	a. Create the directories where the files will be stored:
+
+		$ sudo mkdir -p /var/log/fundingcircle/CfTransact
+		$ sudo mkdir -p /var/log/fundingcircle/repayments
+
+	b. In development, change permission to rwx for all users:
+
+		$ sudo chmod -R 777 /var/log/fundingcircle
+
+	c. Set the log location in the database:
+
+		$ bundle exec rake db:set_physical_logs
+
+6. Configure the database with a URL for Redis:
+
+        $ bundle exec rake db:redis:set_uri
+
+7. Uncomment the ‘schema_search_path: ’ line in development: section of database.yml
+
+8. Seed development data (requires bilcas to be running locally):
+
+        $ bundle exec rake db:seed
+
+#### Web server setup
+
+Run the Nginx related rake tasks
+
+    $ bundle exec rake nginx
+
+Note: this might fail for the first time. Retry if so.
+
+#### Run Application
+
+[Foreman](https://github.com/ddollar/foreman) is used to boot the application under
+*development* environment. Before executing the command below, make sure that Nginx,
+PHP-FPM, PostgreSQL, Elasticsearch, Redis and RabbitMQ are running:
+```bash
+bin/boot
+```
+
+#### PHP Setup
+
+Generate Symfony models via
+
+    $ bundle exec rake symfony
+
+#### Create OAuth entries
+
+Execute this in your Postgresql client (e.g. psql):
+
+    \c fc_development
+    UPDATE oauth2_clients SET redirect_uri = 'http://development.fc/auth/funding_circle_oauth2/callback' WHERE name = 'FC Frontend App';
+
+You will need to do a similar update for alpaca and any other OAuth clients, e.g.:
+
+    UPDATE oauth2_clients SET redirect_uri = 'http://development.fc:3001/auth/funding_circle_oauth2/callback' WHERE name = 'Alpaca';
+
+If the update command is successful, it returns output like `UPDATE <count>`
+where *count* is the number of rows updated. If count is 0, make sure you have
+the [fca-frontend](../../../fca-frontend) and [alpaca](../../../alpaca) repos set up.
+
+#### Generate CSS from all source LESS files
+
+     $ rake assets:less assets:headers assets:footers assets:symfony_view_config
+
+
+## Using Local CODAS
+
+If you are using a local installation of CODAS, ensure that the ```codas_loan_entry``` trigger is activated (in order for the app to move loans from FCA to CODAS).
+
+Check the loan table to ensure that the codas_loan_entry triggers are enabled:
+```
+\d loan
+```
+
+If it's disabled, enable them using a command below:
+```
+alter table loan ENABLE TRIGGER codas_loan_entry;
+```
+
+## Testing
+
+You can run unit tests with rspec
+
+    $ bin/rspec
+
+CI is running on http://jenkins-master0.fcuat.co.uk
+
+You can provision CI workers
+
+     $ BOOTSTRAP=false BERKS_REBUILD=true HOST_NAME=jenkins-slave6.fcuat.co.uk bin/rake ci:provision
+
+Note: if you want to update Berksfile dependencies, run in config/chef/cookbooks/funding_circle_app:
+
+     $ bundle exec berks update cookbook-name
+
+## Troubleshooting
+
+- HTTP 502 error code at [http://development.fc/backend_dev.php](http://development.fc/backend_dev.php). You will have to add PHP to the launch agents (and load it).
+  Please check `brew info php54` for more information. In the end, PHP needs to be running on port 9000 (`netstat -an | grep 9000`).
+- HTTP 404 error code at [http://development.fc/admin](http://development.fc/admin). The passenger config has not been added to nginx.
+  Please re-run (or view) `./script/nginx_mac_install` for instructions.
+- Crazy test failures, generally linked to `Resque.pm` errors or too many open files: the postgres `max_files_per_process` setting (usually defined in `/usr/local/var/postgres/postgresql.conf`) should be uncommented and lowered to 100.
+
+## Deployment
+
+[Capistrano](https://github.com/capistrano/capistrano) is used for deployment.
+
+Check [config/deploy.rb](config/deploy.rb) for all available options.
+
+### UAT
+
+    $ bin/cap uat _OTHER_TASKS_ deploy SERVER=_SERVER_ BRANCH=_BRANCH_
+
+Where:
+
+  - `_BRANCH_` is the remote branch you want to deploy. You can use BRANCH="$(git rev-parse --abbrev-ref HEAD)" for current branch.
+  - `_OTHER_TASKS_` can be `migrate_online`, `migrate_offline`, `no_assets`, etc.
+  - `_SERVER_` the domain name of the UAT environment.
+
+Example:
+
+	  $ bin/cap uat migrate_online deploy SERVER=zelda.fcuat.co.uk BRANCH=master
+
+
+### Production
+
+Only tags should be deployed to production.
+
+Checkout the production branch and create a tag:
+
+    git tag --annotate deploy_production_$(date -u +%Y%m%d%H%M%S) <commit_sha>
+
+If `<commit_sha>` is left out it uses the HEAD of the *master* branch.
+
+Push the tag:
+
+    git push origin <tag_name>
+
+Notify everyone in the HipChat "Deployments Room" that you're about to deploy, e.g:
+
+> @here Deploying FCA to production once Jenkins build goes green
+
+Deploy to production:
+
+    bin/cap production deploy TAG=_DEPLOY_TAG_
+
+The same command can be used to roll back to a previous production
+[deployment tag][tags], but beware of unintended consequences. If your original
+deployment involved migrations, do not roll it back with this command. We don't
+roll back migrations automatically due to the risk of data loss. In that case,
+create a new migration that reverts the previous one.
+
+Finally, [add release notes](/../../releases) for the deployment tag and notify
+others of the completed deploy via email and HipChat. A more detailed workflow
+guide can be found in the [Tech Playbook][workflow].
+
+[tags]: https://github.com/FundingCircle/funding_circle_app/tags
+[workflow]: https://github.com/FundingCircle/tech-playbook/blob/master/uk/guide/workflow.md
+
+## API Access
+
+API access can be requested at [http://www.fundingcircle.com/api/sign_up/new](http://www.fundingcircle.com/api/sign_up/new)
+
+API access can be granted at [http://www.fundingcircle.com/admin/api/sign_ups](http://www.fundingcircle.com/admin/api/sign_ups)
+
+*Please replace 'fundingcircle.com' with your specific environment. For example http://www.kirby.fcuat.co.uk/api/sign_up/new*
+
+Full instructions can be found [here](https://docs.google.com/a/fundingcircle.com/document/d/1QeyzmHDzYv6UP6yebpxscAKd8rrSyw5rdovlbrfds4U/edit?usp=sharing).
+
+## Guidelines
+
+### Importing models from database
+
+	  $ rake db:generate_from_legacy table=financial.account_recovery
+
+### How to edit & migrate stored procedures
+
+  1. Find the procedure you want to edit in db/functions/<schema>/<function name>.sql
+
+  2. Make your change(s).
+
+  3. (optional) Run rake task to execute db/functions/*/*.sql against the current database.
+
+        bin/rake db:load_functions
+
+
+  4. (optional) Repeat 2-3 as until happy with result.
+
+  5. Generate migration with
+
+        bin/rails generate migrate_proc <schema>/<function name>
+
+  As always be careful about side-effects when applying migrations for side-effects.
+
+  For the *Jedi* among you, you can edit the stored procedures directly in psql with `\ef`.
+
+### All the things:
+
+  1. Are parallelized (features and specs)
+
+```
+                       .....                                             ]       .......
+                        .....            .          -.                 . %.   .........
+                       ........         ...        ..               .... c   .........
+                        ........         ..        ...             .... .[  ..........
+                        .........        ...      ....           .....  :( ..........
+                         ..........     ..... .   ....          ...... .:( -........
+                         ........... .   .....    ....         ...... . ==.........
+                         .... .......   ......   ......      ...........);........
+                          .............  .......  .....    .............).........
+                         ........ ...... ....... ......   ..............):.......
+    .                     .............................  ...............).......
+    :                      ..... .... ............__,.............. ....l.... ..   .
+    `                      ......... ........:_aI?""?s,-......._s,.:....c.......
+                           ................_a!~ . ... ?c .....u"-"1,....c......
+            ...             .... .. .......+!s...  . ..{.._:_j(   -c...:(.....
+             .....          ............ ....-{c  . _sawe!""?W   = v...=(....
+              ......        .......... ........)s,a}!`     ..Q .   z...);....
+               .......       ..... .............d!`          $c   =k ..)....
+                 ...... .    ........ ......._=J`       _as_>"$w,a}+c..):...
+                 ........     ... ........._2""6      sz?^~~)c ""~  ]..]....
+                  ......... . .............2   -L   <d^_aayymW,      c.v...
+        ]w,.       ........... ...... .. .:(:   ] _p":amQQQQQQk      3.c...
+    .  .d;?c        ......................-(   .zv`<smWQQQQQQQQ,     :c(..                          .
+    .  <(  )s.       .............. .......)c  jn}=QWWQQQQQQQQW[     .L(..                       ....
+    81d?` . -6      . .... ............ ...."S7'2_jQWQQQQQQQQQQk      S( .     .  .           ......
+    ); .  . .+s       ....... .. ............]. 6jQQQQQQQQQQQQQQ      j=.   . .....        ........
+    Z[. .. . ."a   .   ............. ........-[ -$QQQQQQQQQQQQQQ.     m=..........       ........
+    [  . . .. .+c    . . .............. ......o  -4WQQQQQQQQQQQQ;    )Q;.........      .........
+    5 .. . . .  s   ........ .. .. ........ ..S.   ]QQQQQQQQQQQQ[    ]d`........     ..........
+    +( . . . . .);.  ................. .......)c    )QQQQQQQQQWW(    ]X(.......    ..........
+     1 . . . . . s    .................... ....3.    4WQQQQQQQQL;    doL .....   ...........
+     +c .. .. ...]     ...... .. .. ...........+c    )WQQQQQQQW[;   :X2X..... ............
+      ],. . .. . j       ............. .. ......3;.  =QQQQQQQQP_;   jo2d>................
+       5,. . . ..+      . ....................._2L   )TQWQQQWD.2'  .Zo2S[..............
+       -s,...__ad;.       .... .. .. ........_%(.3,  -s)?HUV! j'   jSooo6 ............
+        -"""!!$o2$,        ................ v}`..-L    "Smwwa2^   .dno22X:..... .....
+         .    -$o2h,  ....................=2'.....3;   . --       )So2o2X;-.........
+               +X2X6........... .. ....._u".......-5,            sd2o22oS[.... ....
+               .)XodL................. s}`.........:Qc.      ..<dSo2o2222k .......
+               ..]poXc....... ......._z~............3XSaa,a_saSX22o2o2o2oX.......
+
+```
+
+# Troubleshooting Development Environments
+
+You might encounter certain errors when configuring or rebuilding your development environment.
+**Please do not run any of these items on production!**
+
+## 'Errno::ECONNREFUSED: Connection refused - connect(2)'
+
+If you receive a 'connection received' message with a stack trace including
+```elastic_search``` you might need to start elasticsearch in the background.
+
+Example problem case:
+
+```
+/Users/.../funding_circle_app/lib/elastic_search/instance.rb:76:in `delete_document'
+/Users/.../funding_circle_app/lib/elastic_search/class_methods.rb:44:in `delete_document_by_id'
+/Users/.../funding_circle_app/lib/elastic_search/class_methods.rb:48:in `update_index_by'
+/Users/.../funding_circle_app/app/models/borrower.rb:411:in `refresh_index'
+```
+
+Resolving this involves running elasticsearch in the background on your machine:
+
+```
+elasticsearch --config=/usr/local/opt/elasticsearch/config/elasticsearch.yml
+```
+
+## Cashfac API Error
+
+If you receive a ```Connection Refused``` error, it could mean Bilcas is not
+running, or the configured Bilcas server is unavailable.
+
+The underlying DB error when this happens is as follows:
+
+```
+fundingcircle=# SELECT * FROM financial.account_create(2);
+ERROR:  Cashfac API Error - ERROR - Can't connect to localhost:3000 (Connection refused)
+
+LWP::Protocol::http::Socket: connect: Connection refused at /System/Library/Perl/Extras/5.16/LWP/Protocol/http.pm line 51.
+```
+
+Start the Bilcas server (see the Bilcas README for more details):
+
+```
+cd $PROJECTS_DIR/bilcas && bundle exec unicorn_rails -p 3000
+```
+
+If the problem still persists, check that the Perl Cashfac module has been rewritten to use the correct
+endpoint. Run this in the FundingCircle app directory:
+
+```
+BILCAS_ENDPOINT=http://localhost:3000 bundle exec rake template\['vendor/lib/pi/CashfacPerl/Bilcas.pm vendor/lib/pi/CashfacPerl/Cashfac.pm'\]
+```
+
+## 'Lender does not have a cashfac account'
+
+If you rebuild your database, you might encounter this error when running
+```bundle exec rake db:seed``` or
+```bundle exec rake seed_bulk_data:users```:
+
+```
+rake aborted!
+Lender does not have a cashfac account
+```
+
+There are two possible causes for this problem:
+
+1. The most common cause is that the physical log files are not correctly configured. See below.
+2. Alternatively, Bilcas may not be running, or the Cashfac API may not be correctly configured.
+    See the 'Cashfac API Error' troubleshooting section in this document for more details.
+
+The underlying error associated with item 1 is as follows:
+
+```
+fundingcircle=# SELECT * FROM financial.account_create(2);
+ERROR:  Could not find a log named 'cftrans'. at line 11.
+CONTEXT:  PL/Perl function "logmsg"
+SQL statement "SELECT pi.logmsg('cftrans', accountref || ' : creating account.')"
+PL/pgSQL function cashfac.create_account(text,text,text,text,text,text[],text) line 6 at PERFORM
+PL/pgSQL function financial.account_create(integer) line 111 at IF
+```
+
+To resolve this, you will need to run the steps in the 'Database setup' section of the README.md file - see
+https://github.com/FundingCircle/funding_circle_app#database-setup -
+specifically creating the directories and running the rake tasks in the section
+"Create physical log files for database stored procedures".
