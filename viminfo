@@ -86,18 +86,20 @@ $
 	where(player_id: player.id).first
 
 # File marks:
-'0  55  30  ~/Developer/FundingCircle/funding_circle_app/README.md
-'1  4  0  ~/Developer/FundingCircle/funding_circle_app/Gemfile
-'2  95  103  ~/Developer/FundingCircle/funding_circle_app/README.md
-'3  4  0  ~/vim_config/bundle/NERD_tree_1
-'4  45  30  ~/.vim/.vimrc
-'5  1  0  ~/.vim/.git/MERGE_MSG
-'6  40  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/app/views/items/index.html.slim
-'7  1  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/app/views/items/index.html.slim
-'8  1  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/zsh
-'9  10  5  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/mlb_ranking_json_generator.rb
+'0  3  0  ~/vim_config/viminfo
+'1  55  30  ~/Developer/FundingCircle/funding_circle_app/README.md
+'2  4  0  ~/Developer/FundingCircle/funding_circle_app/Gemfile
+'3  95  103  ~/Developer/FundingCircle/funding_circle_app/README.md
+'4  4  0  ~/vim_config/bundle/NERD_tree_1
+'5  45  30  ~/.vim/.vimrc
+'6  1  0  ~/.vim/.git/MERGE_MSG
+'7  40  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/app/views/items/index.html.slim
+'8  1  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/app/views/items/index.html.slim
+'9  1  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/zsh
 
 # Jumplist (newest first):
+-'  3  0  ~/vim_config/viminfo
+-'  1  0  ~/vim_config/viminfo
 -'  55  30  ~/Developer/FundingCircle/funding_circle_app/README.md
 -'  1  0  ~/Developer/FundingCircle/funding_circle_app/README.md
 -'  4  0  ~/Developer/FundingCircle/funding_circle_app/Gemfile
@@ -196,9 +198,14 @@ $
 -'  1  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/models/ability.rb
 -'  1  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/helpers/api/base_helper.rb
 -'  8  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/config/application.rb
--'  1  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/config/application.rb
 
 # History of marks within files (newest to oldest):
+
+> ~/vim_config/viminfo
+	"	3	0
+	^	3	1
+	.	1	0
+	+	1	0
 
 > ~/Developer/FundingCircle/funding_circle_app/README.md
 	"	55	30
