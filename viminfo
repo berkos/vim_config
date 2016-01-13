@@ -14,9 +14,9 @@
 $
 
 # Command Line History (newest to oldest):
+:wq
 :q
 :q!
-:wq
 :qa
 :set syntax=markdown
 ::set syntax=markdown
@@ -90,18 +90,21 @@ $
 	where(player_id: player.id).first
 
 # File marks:
-'0  32  0  ~/Developer/FundingCircle/bank_account_verifier/bin/setup
-'1  11  0  ~/.profile
-'2  7  0  /private/etc/hosts
-'3  10  24  /private/etc/hosts
-'4  1  0  /private/etc/hosts
-'5  16  0  ~/.profile
-'6  118  0  /usr/local/etc/nginx/nginx.conf
-'7  66  0  ~/Developer/FundingCircle/funding_circle_app/script/nginx_mac_install
-'8  7  2  ~/Developer/FundingCircle/funding_circle_app/config/database.yml
-'9  909  24  /usr/local/etc/php/5.4/php.ini
+'0  1  9  ~/vim_config/.git/COMMIT_EDITMSG
+'1  14  0  ~/vim_config/.git/COMMIT_EDITMSG
+'2  1  0  ~/vim_config/.vimrc
+'3  32  0  ~/Developer/FundingCircle/bank_account_verifier/bin/setup
+'4  11  0  ~/.profile
+'5  7  0  /private/etc/hosts
+'6  10  24  /private/etc/hosts
+'7  1  0  /private/etc/hosts
+'8  16  0  ~/.profile
+'9  118  0  /usr/local/etc/nginx/nginx.conf
 
 # Jumplist (newest first):
+-'  1  9  ~/vim_config/.git/COMMIT_EDITMSG
+-'  14  0  ~/vim_config/.git/COMMIT_EDITMSG
+-'  1  0  ~/vim_config/.vimrc
 -'  32  0  ~/Developer/FundingCircle/bank_account_verifier/bin/setup
 -'  1  0  ~/Developer/FundingCircle/bank_account_verifier/bin/setup
 -'  11  0  ~/.profile
@@ -136,11 +139,9 @@ $
 -'  12  0  ~/Developer/FundingCircle/funding_circle_app/README.md
 -'  68  0  ~/Developer/FundingCircle/funding_circle_app/README.md
 -'  86  0  ~/Developer/FundingCircle/funding_circle_app/README.md
--'  174  0  ~/vim_config/.vimrc
--'  1  0  ~/vim_config/.vimrc
+-'  173  0  ~/vim_config/.vimrc
 -'  51  4  ~/Developer/FundingCircle/funding_circle_app/README.md
 -'  20  0  ~/vim_config/.git/COMMIT_EDITMSG
--'  1  0  ~/vim_config/.git/COMMIT_EDITMSG
 -'  3  0  ~/vim_config/viminfo
 -'  1  0  ~/vim_config/viminfo
 -'  4  0  ~/Developer/FundingCircle/funding_circle_app/Gemfile
@@ -199,11 +200,21 @@ $
 -'  45  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/models/player.rb
 -'  6  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/db/schema.rb
 -'  1  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/db/schema.rb
--'  166  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/config/routes.rb
--'  5  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/Gemfile
--'  1  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/Gemfile
 
 # History of marks within files (newest to oldest):
+
+> ~/vim_config/.git/COMMIT_EDITMSG
+	"	1	9
+	^	1	10
+	.	1	9
+	+	1	9
+
+> ~/vim_config/.vimrc
+	"	1	0
+	^	1	0
+	.	2	0
+	+	172	59
+	+	2	0
 
 > ~/Developer/FundingCircle/bank_account_verifier/bin/setup
 	"	32	0
@@ -304,15 +315,6 @@ $
 	+	98	0
 	+	97	169
 	+	97	0
-
-> ~/vim_config/.vimrc
-	"	174	0
-	^	174	0
-	.	173	59
-	+	173	59
-
-> ~/vim_config/.git/COMMIT_EDITMSG
-	"	20	0
 
 > ~/vim_config/viminfo
 	"	3	0

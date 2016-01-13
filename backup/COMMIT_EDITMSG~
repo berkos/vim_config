@@ -1,20 +1,41 @@
-test2
+test
 
 Signed-off-by: Antonis Berkakis <aberkakis@gmail.com>
 
 # Please enter the commit message for your changes. Lines starting
 # with '#' will be ignored, and an empty message aborts the commit.
 #
-# Date:      Tue Jan 12 15:01:36 2016 +0000
+# Date:      Wed Jan 13 15:42:55 2016 +0000
 #
 # On branch master
-# Your branch is ahead of 'origin/master' by 2 commits.
+# Your branch is ahead of 'origin/master' by 3 commits.
 #   (use "git push" to publish your local commits)
 #
 # Changes to be committed:
+#	modified:   .vimrc
+#	new file:   backup/.env.example~
+#	modified:   backup/.profile~
+#	modified:   backup/.vimrc~
+#	new file:   backup/.zshrc~
+#	new file:   backup/COMMIT_EDITMSG~
+#	modified:   backup/README.md~
+#	new file:   backup/database.yml~
+#	new file:   backup/hosts~
+#	new file:   backup/nginx.conf~
+#	new file:   backup/viminfo~
+#	copied:     undo/%Users%aberkakis%Developer%FundingCircle%funding_circle_app%README.md -> swap/%Users%aberkakis%Developer%FundingCircle%bank_account_verifier%config%chef%environments%uat.rb.swp
+#	new file:   undo/%Users%aberkakis%.profile
+#	new file:   undo/%Users%aberkakis%.zshrc
+#	new file:   undo/%Users%aberkakis%Developer%FundingCircle%bank_account_verifier%.env.example
+#	modified:   undo/%Users%aberkakis%Developer%FundingCircle%funding_circle_app%README.md
+#	new file:   undo/%Users%aberkakis%Developer%FundingCircle%funding_circle_app%config%database.yml
+#	new file:   undo/%Users%aberkakis%vim_config%.vimrc
+#	new file:   undo/%Users%aberkakis%vim_config%viminfo
+#	new file:   undo/%private%etc%hosts
+#	new file:   undo/%usr%local%etc%nginx%nginx.conf
 #	modified:   viminfo
 #
-# Untracked files:
-#	backup/viminfo~
-#	undo/%Users%aberkakis%vim_config%viminfo
+# Changes not staged for commit:
+#	modified:   backup/COMMIT_EDITMSG~
+#	modified:   viminfo
 #
