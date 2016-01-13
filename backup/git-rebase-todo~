@@ -1,7 +1,8 @@
 pick 88413a8 tets rebase
 pick 8cfa1b6 edit vimrc
+pick 7b26929 change vimrc command for the warning
 
-# Rebase 5b46936..8cfa1b6 onto 5b46936 (2 command(s))
+# Rebase 5b46936..7b26929 onto 5b46936 (3 command(s))
 #
 # Commands:
 # p, pick = use commit

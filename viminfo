@@ -14,10 +14,10 @@
 $
 
 # Command Line History (newest to oldest):
+:wq
 :q
 :Wq
 :w
-:wq
 :q!
 :qa
 :set syntax=markdown
@@ -68,43 +68,47 @@ $
 "0	CHAR	0
 	where(player_id: player.id).first
 ""1	LINE	0
+	pick 8cfa1b6 edit vimrc
+"2	LINE	0
 	" Ruby hash syntax conversion
 	noremap <F12>
 	nnoremap <F12> :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<return>
-"2	LINE	0
+"3	LINE	0
 	" Increment numbers
 	nnoremap <A-a> <C-a>
 	nnoremap <A-x> <C-x>
-"3	LINE	0
-	    passenger_ruby /usr/bin/ruby;
 "4	LINE	0
-	alias "vi=vim"
+	    passenger_ruby /usr/bin/ruby;
 "5	LINE	0
-	You might need to provide the path to the Postgres data directory with the -D switch, for example:
+	alias "vi=vim"
 "6	LINE	0
-	Then install gem dependencies with:
+	You might need to provide the path to the Postgres data directory with the -D switch, for example:
 "7	LINE	0
-	      Gio Gonzalez
+	Then install gem dependencies with:
 "8	LINE	0
-	      player_salary = player.player_salaries.where(gamedate: @date).first
+	      Gio Gonzalez
 "9	LINE	0
-	        frefer
+	      player_salary = player.player_salaries.where(gamedate: @date).first
 "-	CHAR	0
 	where(player_id: player.id).first
 
 # File marks:
-'0  69  5  ~/vim_config/.vimrc
-'1  227  0  ~/vim_config/.vimrc
-'2  1  0  ~/vim_config/.vimrc
-'3  1  9  ~/vim_config/.git/COMMIT_EDITMSG
-'4  14  0  ~/vim_config/.git/COMMIT_EDITMSG
-'5  32  0  ~/Developer/FundingCircle/bank_account_verifier/bin/setup
-'6  11  0  ~/.profile
-'7  7  0  /private/etc/hosts
-'8  10  24  /private/etc/hosts
-'9  1  0  /private/etc/hosts
+'0  3  6  ~/vim_config/.gitignore
+'1  2  0  ~/vim_config/.git/rebase-merge/git-rebase-todo
+'2  69  5  ~/vim_config/.vimrc
+'3  227  0  ~/vim_config/.vimrc
+'4  1  0  ~/vim_config/.vimrc
+'5  1  9  ~/vim_config/.git/COMMIT_EDITMSG
+'6  14  0  ~/vim_config/.git/COMMIT_EDITMSG
+'7  32  0  ~/Developer/FundingCircle/bank_account_verifier/bin/setup
+'8  11  0  ~/.profile
+'9  7  0  /private/etc/hosts
 
 # Jumplist (newest first):
+-'  3  6  ~/vim_config/.gitignore
+-'  1  0  ~/vim_config/.gitignore
+-'  2  0  ~/vim_config/.git/rebase-merge/git-rebase-todo
+-'  1  0  ~/vim_config/.git/rebase-merge/git-rebase-todo
 -'  69  5  ~/vim_config/.vimrc
 -'  68  5  ~/vim_config/.vimrc
 -'  166  0  ~/vim_config/.vimrc
@@ -201,10 +205,24 @@ $
 -'  1  0  /private/etc/hosts
 -'  10  24  /private/etc/hosts
 -'  16  0  ~/.profile
--'  118  0  /usr/local/etc/nginx/nginx.conf
--'  35  4  /usr/local/etc/nginx/nginx.conf
 
 # History of marks within files (newest to oldest):
+
+> ~/vim_config/.gitignore
+	"	3	6
+	^	3	7
+	.	2	5
+	+	3	18
+	+	1	0
+	+	2	0
+	+	3	0
+	+	1	7
+	+	2	5
+
+> ~/vim_config/.git/rebase-merge/git-rebase-todo
+	"	2	0
+	.	2	0
+	+	2	0
 
 > ~/vim_config/.vimrc
 	"	69	5
