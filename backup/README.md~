@@ -48,10 +48,8 @@ If you just installed a new version of ruby, make sure you have a bundler instal
 
     $ gem install bundler
 
-(In El Capitan OS you might need to define where the openssl.h header is for the eventmachine gem installation to pass, by doing)
-    $ bundle config build.eventmachine --with-cppflags=-I$(brew --prefix openssl)/include
-
 Then install gem dependencies with:
+
     $ bundle install --binstubs
 
 #### System Configuration
@@ -92,7 +90,7 @@ Optional: If this is your first Postgres database, run:
 
 	$ initdb -E utf8
 
-You might need to provide the path to the Postgres data directory with the -D switch (make sure this directory is onwned by the correct user if it does not), for example:
+You might need to provide the path to the Postgres data directory with the -D switch, for example:
 
 	$ initdb -E utf8 -D /usr/local/var/postgres
 
