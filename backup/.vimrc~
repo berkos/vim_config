@@ -1,3 +1,4 @@
+
 set nocompatible " be iMproved
 
 " For vundle
@@ -227,6 +228,3 @@ endif
 noremap <F12>
 nnoremap <F12> :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<return>
 
-" Increment numbers
-nnoremap <A-a> <C-a>
-nnoremap <A-x> <C-x>

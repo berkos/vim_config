@@ -224,10 +224,4 @@ if exists("+undofile")
 	set undofile
 endif
 
-" Ruby hash syntax conversion
-noremap <F12>
-nnoremap <F12> :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<return>
 
-" Increment numbers
-nnoremap <A-a> <C-a>
-nnoremap <A-x> <C-x>
