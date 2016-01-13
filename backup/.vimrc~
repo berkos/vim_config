@@ -1,29 +1,3 @@
-execute pathogen#infect()
-syntax on
-set nocompatible
-filetype on
-filetype indent on
-filetype plugin on
-
-
-filetype plugin indent on
-
-autocmd vimenter * NERDTree
-
-colorscheme sunburst
-
-
-set number
-set splitright
-set modifiable
-
-set tabstop=3
-set shiftwidth=2
-set expandtab
-set laststatus=2
-
-
-"--------------------------other file!!
 
 set nocompatible " be iMproved
 
@@ -36,12 +10,16 @@ call vundle#rc()
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "honza/vim-snippets"
-
+Bundle "sickill/vim-sunburst"
 " Good looking bottom :) 
 
-
+Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
-
+Bundle 'Xuyuanp/nerdtree-git-plugin'
+Bundle 'slim-template/vim-slim'
+Bundle 'airblade/vim-gitgutter'
+Plugin 'https://github.com/berkos/vim-haml.git'
+Plugin 'Yggdroot/indentLine'
 
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
@@ -85,9 +63,24 @@ Bundle 'danro/rename.vim'
 
 Bundle 'nono/vim-handlebars'
 
-" ----------- Mine Stuff  ------
+" ----------- My Stuff  ------
+"
+nnoremap œ :tabprevious<CR>
+nnoremap ∑ :tabnext<CR>
+nnoremap † :tabnew<CR>
+inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+inoremap <C-tab>   <Esc>:tabnext<CR>i
+inoremap <C-t>     <Esc>:tabnew<CR>
+
 set splitright
+set relativenumber
+
 map  ,t  <C-p>
+let NERDTreeMapPreview='gt'
+let NERDTreeShowHidden=1
+let g:indentLine_color_term = 239
+
+map <C-n> :NERDTreeToggle<CR>
 
 set guifont=Inconsolata\ for\ Powerline:h15
 let g:Powerline_symbols = 'fancy'

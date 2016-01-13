@@ -8,20 +8,16 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~MSle0~/default
+~MSle0~/event
 
 # Last Substitute String:
 $
 
 # Command Line History (newest to oldest):
-:q
-:q!
 :wq
-:qa
-:set syntax=markdown
-::set syntax=markdown
-:syn clear mkdLineBreak
 :w
+:q
+:qa
 :PluginInstall
 :grep -R '.ad' .
 :vimgrep "string" db/schema.rb
@@ -32,15 +28,14 @@ $
 :MRU
 :MEU
 :W
+:q!
 :Qa
 :noh
+:e
+:vsplit 
+:open test.rb
 
 # Search String History (newest to oldest):
-?/http
-?/default
-?/schema
-?/London
-?/data
 ?/event
 ?/Database
 ?/mlb/rankings
@@ -56,6 +51,7 @@ $
 ?/mlb_rankings
 ?/mlb_ranking
 ?/acce
+?/p
 
 # Expression History (newest to oldest):
 =SuperTab('n')
@@ -68,85 +64,46 @@ $
 "0	CHAR	0
 	where(player_id: player.id).first
 ""1	LINE	0
-	    passenger_ruby /usr/bin/ruby;
-"2	LINE	0
-	alias "vi=vim"
-"3	LINE	0
-	You might need to provide the path to the Postgres data directory with the -D switch, for example:
-"4	LINE	0
 	Then install gem dependencies with:
-"5	LINE	0
+"2	LINE	0
 	      Gio Gonzalez
-"6	LINE	0
+"3	LINE	0
 	      player_salary = player.player_salaries.where(gamedate: @date).first
-"7	LINE	0
+"4	LINE	0
 	        frefer
-"8	LINE	0
+"5	LINE	0
 	     efefer
-"9	LINE	0
+"6	LINE	0
 	        
 	      end
+"7	LINE	0
+	neupDeluxeend
+"8	LINE	0
+	neupDeluxeddend
+"9	LINE	0
+	    MlbLineupDeluxe
 "-	CHAR	0
 	where(player_id: player.id).first
 
 # File marks:
-'0  32  0  ~/Developer/FundingCircle/bank_account_verifier/bin/setup
-'1  11  0  ~/.profile
-'2  7  0  /private/etc/hosts
-'3  10  24  /private/etc/hosts
-'4  1  0  /private/etc/hosts
-'5  16  0  ~/.profile
-'6  118  0  /usr/local/etc/nginx/nginx.conf
-'7  66  0  ~/Developer/FundingCircle/funding_circle_app/script/nginx_mac_install
-'8  7  2  ~/Developer/FundingCircle/funding_circle_app/config/database.yml
-'9  909  24  /usr/local/etc/php/5.4/php.ini
+'0  55  30  ~/Developer/FundingCircle/funding_circle_app/README.md
+'1  4  0  ~/Developer/FundingCircle/funding_circle_app/Gemfile
+'2  95  103  ~/Developer/FundingCircle/funding_circle_app/README.md
+'3  4  0  ~/vim_config/bundle/NERD_tree_1
+'4  45  30  ~/.vim/.vimrc
+'5  1  0  ~/.vim/.git/MERGE_MSG
+'6  40  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/app/views/items/index.html.slim
+'7  1  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/app/views/items/index.html.slim
+'8  1  0  ~/Developer/ruby/antonis/elance/shapeandfurnish/zsh
+'9  10  5  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/mlb_ranking_json_generator.rb
 
 # Jumplist (newest first):
--'  32  0  ~/Developer/FundingCircle/bank_account_verifier/bin/setup
--'  1  0  ~/Developer/FundingCircle/bank_account_verifier/bin/setup
--'  11  0  ~/.profile
--'  1  0  ~/.profile
--'  7  0  /private/etc/hosts
--'  1  0  /private/etc/hosts
--'  10  24  /private/etc/hosts
--'  16  0  ~/.profile
--'  118  0  /usr/local/etc/nginx/nginx.conf
--'  35  4  /usr/local/etc/nginx/nginx.conf
--'  19  4  /usr/local/etc/nginx/nginx.conf
--'  53  0  /usr/local/etc/nginx/nginx.conf
--'  1  0  /usr/local/etc/nginx/nginx.conf
--'  66  0  ~/Developer/FundingCircle/funding_circle_app/script/nginx_mac_install
--'  1  0  ~/Developer/FundingCircle/funding_circle_app/script/nginx_mac_install
--'  7  2  ~/Developer/FundingCircle/funding_circle_app/config/database.yml
--'  19  0  ~/Developer/FundingCircle/funding_circle_app/config/database.yml
--'  1  0  ~/Developer/FundingCircle/funding_circle_app/config/database.yml
--'  909  24  /usr/local/etc/php/5.4/php.ini
--'  1  0  /usr/local/etc/php/5.4/php.ini
--'  3  0  /usr/local/etc/php/5.4/php.ini
--'  55  0  ~/.zshrc
--'  1  0  ~/.zshrc
--'  9  0  ~/.profile
--'  3  0  ~/.profile
--'  1  0  ~/.bashrc
--'  1  0  ~/.bash_profile
--'  14  0  ~/.profile
--'  97  0  ~/Developer/FundingCircle/funding_circle_app/README.md
+-'  55  30  ~/Developer/FundingCircle/funding_circle_app/README.md
 -'  1  0  ~/Developer/FundingCircle/funding_circle_app/README.md
--'  61  3  ~/Developer/FundingCircle/funding_circle_app/README.md
--'  12  0  ~/Developer/FundingCircle/funding_circle_app/README.md
--'  68  0  ~/Developer/FundingCircle/funding_circle_app/README.md
--'  86  0  ~/Developer/FundingCircle/funding_circle_app/README.md
--'  174  0  ~/vim_config/.vimrc
--'  1  0  ~/vim_config/.vimrc
--'  51  4  ~/Developer/FundingCircle/funding_circle_app/README.md
--'  20  0  ~/vim_config/.git/COMMIT_EDITMSG
--'  1  0  ~/vim_config/.git/COMMIT_EDITMSG
--'  3  0  ~/vim_config/viminfo
--'  1  0  ~/vim_config/viminfo
 -'  4  0  ~/Developer/FundingCircle/funding_circle_app/Gemfile
 -'  1  0  ~/Developer/FundingCircle/funding_circle_app/Gemfile
--'  101  103  ~/Developer/FundingCircle/funding_circle_app/README.md
--'  83  0  ~/Developer/FundingCircle/funding_circle_app/README.md
+-'  95  103  ~/Developer/FundingCircle/funding_circle_app/README.md
+-'  77  0  ~/Developer/FundingCircle/funding_circle_app/README.md
 -'  4  0  ~/vim_config/bundle/NERD_tree_1
 -'  40  2  ~/vim_config/bundle/NERD_tree_1
 -'  1  0  ~/vim_config/bundle/NERD_tree_1
@@ -202,123 +159,56 @@ $
 -'  166  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/config/routes.rb
 -'  5  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/Gemfile
 -'  1  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/Gemfile
+-'  34  4  ~/Developer/ruby/antonis/elance/fantasyinsiders/db/schema.rb
+-'  68  2  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/views/plans/switch_to_annual.html.haml
+-'  1  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/views/plans/switch_to_annual.html.haml
+-'  68  2  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/views/devise/registrations/edit.html.erb
+-'  1  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/views/devise/registrations/edit.html.erb
+-'  7  13  ~/.profile
+-'  1  0  ~/.profile
+-'  7  44  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/mlb_ranking_json_generator.rb
+-'  52  14  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/mlb_ranking_json_generator.rb
+-'  47  8  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/mlb_ranking_json_generator.rb
+-'  27  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/mlb_ranking_json_generator.rb
+-'  53  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/mlb_ranking_json_generator.rb
+-'  25  28  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/mlb_ranking_json_generator.rb
+-'  18  23  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/mlb_ranking_json_generator.rb
+-'  22  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/lib/mlb_ranking_json_generator.rb
+-'  2  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/test.rb
+-'  14  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/test.rb
+-'  5  42  ~/Developer/ruby/antonis/elance/fantasyinsiders/test.rb
+-'  8  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/test.rb
+-'  1  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/test.rb
+-'  682  4  ~/Developer/ruby/antonis/elance/fantasyinsiders/db/schema.rb
+-'  14  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/db/schema.rb
+-'  27  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/controllers/api/v1/mlb_rankings_controller.rb
+-'  1  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/controllers/api/v1/mlb_rankings_controller.rb
+-'  46  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/controllers/api/v1/mlb_rankings_controller.rb
+-'  32  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/serializers/mlb_ranking_serializer.rb
+-'  34  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/models/player.rb
+-'  1  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/models/player.rb
+-'  170  27  ~/rcfiles/vim/vimrc
+-'  1  0  ~/rcfiles/vim/vimrc
+-'  8  11  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/models/ability.rb
+-'  9  46  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/models/ability.rb
+-'  14  6  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/models/ability.rb
+-'  15  12  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/models/ability.rb
+-'  1  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/models/ability.rb
+-'  1  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/app/helpers/api/base_helper.rb
+-'  8  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/config/application.rb
+-'  1  0  ~/Developer/ruby/antonis/elance/fantasyinsiders/config/application.rb
 
 # History of marks within files (newest to oldest):
 
-> ~/Developer/FundingCircle/bank_account_verifier/bin/setup
-	"	32	0
-
-> ~/.profile
-	"	11	0
-	^	11	0
-	.	10	49
-	+	6	25
-	+	7	8
-	+	7	12
-	+	8	0
-	+	7	0
-	+	11	0
-	+	9	67
-	+	10	49
-
-> ~/.zshrc
-	"	56	32
-	^	56	33
-	.	56	32
-	+	60	0
-	+	61	17
-	+	56	32
-
-> /private/etc/hosts
-	"	7	0
-	^	7	0
-	.	7	0
-	+	8	98
-	+	7	0
-	+	10	25
-	+	7	0
-
-> /usr/local/etc/nginx/nginx.conf
-	"	118	0
-	^	118	0
-	.	120	3
-	+	35	4
-	+	35	0
-	+	36	4
-	+	35	4
-	+	36	0
-	+	117	0
-	+	118	0
-	+	117	95
-	+	117	3
-	+	118	0
-	+	120	2
-	+	119	3
-	+	120	3
-	+	120	85
-	+	120	3
-
-> ~/Developer/FundingCircle/funding_circle_app/script/nginx_mac_install
-	"	66	0
-
-> ~/Developer/FundingCircle/funding_circle_app/config/database.yml
-	"	7	2
-	^	7	3
-	.	9	2
-	+	9	2
-
-> /usr/local/etc/php/5.4/php.ini
-	"	909	24
-
-> ~/.bashrc
-	"	1	0
-
-> ~/.bash_profile
-	"	1	0
-
 > ~/Developer/FundingCircle/funding_circle_app/README.md
-	"	97	0
-	^	98	0
-	.	97	0
-	+	101	101
+	"	55	30
+	^	52	0
+	.	53	0
+	+	95	101
 	+	51	129
-	+	56	81
+	+	52	81
 	+	51	0
-	+	58	0
-	+	61	32
-	+	49	26
-	+	56	5
-	+	56	90
-	+	49	25
-	+	56	3
-	+	56	89
-	+	61	4
-	+	61	0
-	+	59	35
-	+	56	0
-	+	57	3
-	+	54	0
-	+	51	129
-	+	53	3
-	+	97	98
-	+	98	0
-	+	97	169
-	+	97	0
-
-> ~/vim_config/.vimrc
-	"	174	0
-	^	174	0
-	.	173	59
-	+	173	59
-
-> ~/vim_config/.git/COMMIT_EDITMSG
-	"	20	0
-
-> ~/vim_config/viminfo
-	"	3	0
-	^	3	1
-	.	1	0
-	+	1	0
+	+	53	0
 
 > ~/Developer/FundingCircle/transfers/README.md
 	"	9	30
@@ -1020,6 +910,14 @@ $
 	+	46	0
 	+	70	0
 	+	66	0
+
+> ~/.profile
+	"	7	13
+	^	7	14
+	.	7	12
+	+	6	25
+	+	7	8
+	+	7	12
 
 > ~/Developer/ruby/antonis/elance/fantasyinsiders/test.rb
 	"	3	0
