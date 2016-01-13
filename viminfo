@@ -90,9 +90,9 @@ $
 	where(player_id: player.id).first
 
 # File marks:
-'0  1  9  ~/vim_config/.git/COMMIT_EDITMSG
-'1  14  0  ~/vim_config/.git/COMMIT_EDITMSG
-'2  1  0  ~/vim_config/.vimrc
+'0  1  0  ~/vim_config/.vimrc
+'1  1  9  ~/vim_config/.git/COMMIT_EDITMSG
+'2  14  0  ~/vim_config/.git/COMMIT_EDITMSG
 '3  32  0  ~/Developer/FundingCircle/bank_account_verifier/bin/setup
 '4  11  0  ~/.profile
 '5  7  0  /private/etc/hosts
@@ -102,9 +102,9 @@ $
 '9  118  0  /usr/local/etc/nginx/nginx.conf
 
 # Jumplist (newest first):
+-'  1  0  ~/vim_config/.vimrc
 -'  1  9  ~/vim_config/.git/COMMIT_EDITMSG
 -'  14  0  ~/vim_config/.git/COMMIT_EDITMSG
--'  1  0  ~/vim_config/.vimrc
 -'  32  0  ~/Developer/FundingCircle/bank_account_verifier/bin/setup
 -'  1  0  ~/Developer/FundingCircle/bank_account_verifier/bin/setup
 -'  11  0  ~/.profile
@@ -139,7 +139,7 @@ $
 -'  12  0  ~/Developer/FundingCircle/funding_circle_app/README.md
 -'  68  0  ~/Developer/FundingCircle/funding_circle_app/README.md
 -'  86  0  ~/Developer/FundingCircle/funding_circle_app/README.md
--'  173  0  ~/vim_config/.vimrc
+-'  174  0  ~/vim_config/.vimrc
 -'  51  4  ~/Developer/FundingCircle/funding_circle_app/README.md
 -'  20  0  ~/vim_config/.git/COMMIT_EDITMSG
 -'  3  0  ~/vim_config/viminfo
@@ -203,18 +203,19 @@ $
 
 # History of marks within files (newest to oldest):
 
+> ~/vim_config/.vimrc
+	"	1	0
+	^	1	0
+	.	1	0
+	+	173	59
+	+	3	0
+	+	1	0
+
 > ~/vim_config/.git/COMMIT_EDITMSG
 	"	1	9
 	^	1	10
 	.	1	9
 	+	1	9
-
-> ~/vim_config/.vimrc
-	"	1	0
-	^	1	0
-	.	2	0
-	+	172	59
-	+	2	0
 
 > ~/Developer/FundingCircle/bank_account_verifier/bin/setup
 	"	32	0
