@@ -7,37 +7,47 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
 " Dependencies of snipmate
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "honza/vim-snippets"
-Bundle "sickill/vim-sunburst"
+
+" Caching
+"Bundle 'MarcWeber/vim-addon-mw-utils'
+"Bundle 'tomtom/tlib_vim'
+
+"Ruby and rails Snippets
+"Bundle 'honza/vim-snippets'
+
+Bundle 'sickill/vim-sunburst'
 " Good looking bottom :) 
 
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'Xuyuanp/nerdtree-git-plugin'
 Bundle 'slim-template/vim-slim'
+
+"A Vim plugin which shows a git diff in the 'gutter' (sign column)
 Bundle 'airblade/vim-gitgutter'
+
 Plugin 'https://github.com/berkos/vim-haml.git'
+
+"Johns reccomendation, shows | |
 Plugin 'Yggdroot/indentLine'
 
+"Fancy Bar 
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" The Same
+"Bundle 'bling/vim-airline'
 
-Bundle 'bling/vim-airline'
 " Git tools
-Bundle 'tpope/vim-fugitive'
-" Dependency managment
-Bundle 'gmarik/vundle'
+"Bundle 'tpope/vim-fugitive'
+
+" Dependency managment (Vundle)
+"Bundle 'gmarik/vundle'
+
 " Rails :/
-Bundle 'tpope/vim-rails.git'
+"Bundle 'tpope/vim-rails.git'
 " Snippets for our use :)
-Bundle 'garbas/vim-snipmate'
+"Bundle 'garbas/vim-snipmate'
 " Commenting and uncommenting stuff
-Bundle 'tomtom/tcomment_vim'
-" Beutiful solarized theme
-Bundle 'altercation/vim-colors-solarized'
-" Molokai theme
-Bundle 'tomasr/molokai'
+
 " Vim Ruby
 Bundle 'vim-ruby/vim-ruby'
 " Surround your code :)
@@ -51,17 +61,13 @@ Bundle 'kchmck/vim-coffee-script'
 " Fuzzu finder for vim (CTRL+P)
 Bundle 'kien/ctrlp.vim'
 " Ruby Tests
-Bundle 'skalnik/vim-vroom'
+"Bundle 'skalnik/vim-vroom'
 " Easy motion for easy motion
-Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'Lokaltog/vim-easymotion'
 " Running tests in tmux session
 Bundle 'tpope/vim-dispatch'
-" Gist
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
-Bundle 'danro/rename.vim'
 
-Bundle 'nono/vim-handlebars'
+"Bundle 'mustache/vim-mustache-handlebars'
 
 " ----------- My Stuff  ------
 "
@@ -79,6 +85,7 @@ map  ,t  <C-p>
 let NERDTreeMapPreview='gt'
 let NERDTreeShowHidden=1
 let g:indentLine_color_term = 239
+let g:ctrlp_max_files=0
 
 map <C-n> :NERDTreeToggle<CR>
 
@@ -158,12 +165,12 @@ let g:vroom_map_keys = 0
 let g:vroom_use_dispatch = 1
 let g:vroom_use_zeus = 1
 
-map <Leader>c :call vroom#RunTestFile()<CR>
-map <Leader>s :call vroom#RunNearestTest()<CR>
-map <leader>t :A<CR> " \t to jump to test file
-map <leader>r :r<cr> " \t to jump to related file
-map <leader>E :Explore .<cr> " \E to open file explorer in root
-map <leader>e :Explore<cr> " \e to open file explorer in current dir
+"map <Leader>c :call vroom#RunTestFile()<CR>
+"map <Leader>s :call vroom#RunNearestTest()<CR>
+"map <leader>t :A<CR> " \t to jump to test file
+"map <leader>r :r<cr> " \t to jump to related file
+"map <leader>E :Explore .<cr> " \E to open file explorer in root
+"map <leader>e :Explore<cr> " \e to open file explorer in current dir
 
 let g:airline_theme='luna'
 let g:airline_powerline_fonts=1
@@ -224,9 +231,6 @@ if exists("+undofile")
 	set undofile
 endif
 
-" Ruby hash syntax conversion
-noremap <F12>
-nnoremap <F12> :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<return>
 
 " Increment numbers
 nnoremap <A-a> <C-a>
