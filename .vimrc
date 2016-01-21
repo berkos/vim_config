@@ -27,7 +27,7 @@ Bundle 'slim-template/vim-slim'
 Bundle 'airblade/vim-gitgutter'
 
 Plugin 'https://github.com/berkos/vim-haml.git'
-
+Plugin 'marcopaganini/termschool-vim-theme'
 "Johns reccomendation, shows | |
 Plugin 'Yggdroot/indentLine'
 
@@ -132,11 +132,14 @@ augroup END
 syntax enable
 
 " Configs to make Molokai look great
-set background=dark
-let g:molokai_original=1
-let g:rehash256=1
-set t_Co=256
 colorscheme sunburst
+set background=dark
+"highlight Normal guibg=black guifg=white
+"let g:molokai_original=1
+"let g:rehash256=1
+set t_Co=256
+
+:highlight Directory guifg=#FF0000 ctermfg=blue
 
 " Show trailing whitespace and spaces before a tab:
 :highlight ExtraWhitespace ctermbg=red guibg=red
