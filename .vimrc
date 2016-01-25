@@ -22,9 +22,9 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'Xuyuanp/nerdtree-git-plugin'
 Bundle 'slim-template/vim-slim'
-
+Plugin 'mileszs/ack.vim'
 "A Vim plugin which shows a git diff in the 'gutter' (sign column)
-Bundle 'airblade/vim-gitgutter'
+"Bundle 'airblade/vim-gitgutter'
 
 Plugin 'https://github.com/berkos/vim-haml.git'
 Plugin 'marcopaganini/termschool-vim-theme'
@@ -61,7 +61,7 @@ Bundle 'kchmck/vim-coffee-script'
 " Fuzzu finder for vim (CTRL+P)
 Bundle 'kien/ctrlp.vim'
 " Ruby Tests
-"Bundle 'skalnik/vim-vroom'
+Bundle 'skalnik/vim-vroom'
 " Easy motion for easy motion
 "Bundle 'Lokaltog/vim-easymotion'
 " Running tests in tmux session
@@ -77,6 +77,8 @@ nnoremap † :tabnew<CR>
 inoremap <C-S-tab> <Esc>:tabprevious<CR>i
 inoremap <C-tab>   <Esc>:tabnext<CR>i
 inoremap <C-t>     <Esc>:tabnew<CR>
+" copy like normal
+vnoremap <C-c> :w !pbcopy<CR><CR>
 
 set splitright
 set relativenumber
@@ -105,7 +107,7 @@ if has("gui_running")
 endif
 
 
-set grepprg=ack-grep " Set ACK as a default grep
+"set grepprg=ack " Set ACK as a default grep
 set tags=./tags; " Set tags directory
 set autoindent " Auto indention should be on
 
@@ -139,7 +141,7 @@ set background=dark
 "let g:rehash256=1
 set t_Co=256
 
-:highlight Directory guifg=#FF0000 ctermfg=blue
+":highlight Directory guifg=#FF0000 ctermfg=blue
 
 " Show trailing whitespace and spaces before a tab:
 :highlight ExtraWhitespace ctermbg=red guibg=red
@@ -160,18 +162,21 @@ set smartcase
 nmap <Leader><CR> :nohlsearch<cr>
 
 " Buffer switching
-map <leader>p :bp<CR> " \p previous buffer
-map <leader>n :bn<CR> " \n next buffer
-map <leader>d :bd<CR> " \d delete buffer
+"map <leader>p :bp<CR> " \p previous buffer
+"map <leader>n :bn<CR> " \n next buffer
+"map <leader>d :bd<CR> " \d delete buffer
 
-let g:vroom_map_keys = 0
-let g:vroom_use_dispatch = 1
+"let g:vroom_map_keys = 0
+"let g:vroom_use_dispatch = 1
 let g:vroom_use_zeus = 1
+let g:vroom_ignore_color_flag = 1
+"let g:vroom_use_vimshell = 1
+let g:vroom_rspec_version="3.x"
 
-"map <Leader>c :call vroom#RunTestFile()<CR>
-"map <Leader>s :call vroom#RunNearestTest()<CR>
-"map <leader>t :A<CR> " \t to jump to test file
-"map <leader>r :r<cr> " \t to jump to related file
+map <Leader>c :call vroom#RunTestFile()<CR>
+map <Leader>s :call vroom#RunNearestTest()<CR>
+map <leader>t :A<CR> " \t to jump to test file
+map <leader>r :r<cr> " \r to jump to related file
 "map <leader>E :Explore .<cr> " \E to open file explorer in root
 "map <leader>e :Explore<cr> " \e to open file explorer in current dir
 
